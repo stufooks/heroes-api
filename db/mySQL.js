@@ -16,12 +16,6 @@ if(process.env.NODE_ENV == "production") {
   })
 }
 
-// conn.connect(function(err) {
-//   if (err){ 
-//     throw err
-//   }
-// })
-
 module.exports = conn
 
 'mysql://ba20d681ff7bcc:dbecb407@us-cdbr-iron-east-03.cleardb.net/heroku_591606f80109af5?reconnect=true'

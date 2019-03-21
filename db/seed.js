@@ -1,11 +1,7 @@
-const conn = require('./mySQL')
+const sqlDB = require('./mySQL')
 
-let sql1 = 'CREATE TABLE IF NOT EXISTS heroes (id INT(5) NOT NULL PRIMARY KEY AUTO_INCREMENT, name varchar(255), power varchar(255), universe varchar(255))'
-
-conn.query(sql1, (err, result) => {
-  if (err) throw err;
-})
-
+let sqlCreateTable = 'CREATE TABLE IF NOT EXISTS heroes (id INT(5) NOT NULL PRIMARY KEY AUTO_INCREMENT, name varchar(255), power varchar(255), universe varchar(255))'
+let sqlSeed = 'INSERT INTO heroes (name, power, universe) VALUES ?'
 let values = [
   ["Superman", "flying", "DC"],
   ["Batman", "durability", "DC"],
@@ -35,9 +31,14 @@ let values = [
   ["Sarah Rainmaker", "control weather", "Wildstorm"],
 ]
 
-let sql = "INSERT INTO heroes (name, power, universe) VALUES ?"
+sqlDB.query(sqlCreateTable, (err, result) => {
+  if (err){ 
+    throw err
+  }
+  console.log('table created')
+})
 
-conn.query(sql, [values], (err) => {
+sqlDB.query(sqlSeed, [values], (err) => {
   if (err) {
     throw err
   }
