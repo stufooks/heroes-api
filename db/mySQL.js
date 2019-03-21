@@ -1,11 +1,20 @@
 const mysql = require('mysql')
 
-const conn = mysql.createConnection({
-  host: 'localhost',
-  user: 'nodeuser',
-  password: 'nodeuser',
-  database: 'heroes_api'
-})
+if(process.env.NODE_ENV == "production") {
+  var conn = mysql.createConnection({
+    host: 'us-cdbr-iron-east-03.cleardb.net',
+    user: 'ba20d681ff7bcc',
+    password: 'dbecb407',
+    database: 'heroku_591606f80109af5'
+  })
+} else {
+  var conn = mysql.createConnection({
+    host: 'localhost',
+    user: 'nodeuser',
+    password: 'nodeuser',
+    database: 'heroes_api'
+  })
+}
 
 conn.connect(function(err) {
   if (err){ 
@@ -14,3 +23,5 @@ conn.connect(function(err) {
 })
 
 module.exports = conn
+
+'mysql://ba20d681ff7bcc:dbecb407@us-cdbr-iron-east-03.cleardb.net/heroku_591606f80109af5?reconnect=true'
