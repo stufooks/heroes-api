@@ -16,11 +16,11 @@ if(process.env.NODE_ENV == "production") {
   })
 }
 
-conn.connect(function(err) {
-  if (err){ 
-    throw err
-  }
-})
+// conn.connect(function(err) {
+//   if (err){ 
+//     throw err
+//   }
+// })
 
 module.exports = conn
 
