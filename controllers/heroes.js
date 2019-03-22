@@ -26,11 +26,12 @@ router.get("/", (req, res) => {
               sqlDB.query(sql, (err, result) => {
                 if (err) {
                   res.send("Please check your request formatting.")
+                  return
                 }
                 let key = newQuery._id.toString()
                 let data = JSON.stringify(result)
                 client.set(key, data)
-                client.expire(newQuery._id.toString(), 86400)
+                client.expire(key, 86400)
                 res.json(result)
               })
             })
