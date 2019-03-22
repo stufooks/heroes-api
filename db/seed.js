@@ -1,6 +1,6 @@
 const conn = require('./mySQL')
 
-let sql1 = 'CREATE TABLE IF NOT EXISTS heroes (id INT(5) NOT NULL PRIMARY KEY AUTO_INCREMENT, name varchar(255), power varchar(255), universe varchar(255))'
+let sql1 = 'CREATE TABLE IF NOT EXISTS heroes (id INT(5) NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), power VARCHAR(255), universe VARCHAR(255))'
 
 conn.query(sql1, (err, result) => {
   if (err) throw err;
