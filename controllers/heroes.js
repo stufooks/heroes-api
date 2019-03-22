@@ -3,7 +3,13 @@ const sqlDB = require("../db/mySQL")
 const Query = require("../models/Query")
 const redis = require("redis")
 
-const client = redis.createClient()
+if (process.env.REDISTOGO_URL) {
+  var rtg   = require("url").parse(process.env.REDISTOGO_URL)
+  var client = require("redis").createClient(rtg.port, rtg.hostname)
+  client.auth(rtg.auth.split(":")[1])
+} else {
+  var client = redis.createClient()
+}
 
 const router = express.Router()
 
